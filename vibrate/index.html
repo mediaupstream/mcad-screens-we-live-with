@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Telephonic Vibration</title>
+  
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+
+  //
+  // A function that will vibrate your phone for half a second (500ms)
+  // with a 1/4th second (250ms) wait inbetween vibrations
+  // ... a bunch of times
+  // 
+  function pulse(){
+    vibrate_me([
+        500, 250, 500, 250, 500,250, 500,250, 500,250, 500,
+        250, 500,250, 500,250, 500,250, 500,250, 500,250, 500,
+        250, 500,250, 500,250, 500,250, 500,250, 500,250, 500])
+  }
+
+  //
+  // A function that will vibrate your phone.
+  // time can be a number (milliseconds) or an array of time
+  // 
+  function vibrate_me(time){
+    navigator.vibrate( time )
+  }
+
+  // jQuery is ready
+  $(function(){
+
+    // when we click the "cool" div, vibrate phone for 5 seconds
+    $('#cool').click(function(){
+      vibrate_me(5000)
+    })
+
+    // when we click the "pulseit" div, vibrate the phone in pulses
+    $('#pulseit').click(function(){
+      pulse()
+    })
+
+  })
+
+  </script>
+</head>
+<body>
+
+<button id="cool">GET BUZZY</button>
+<button id="pulseit">PULSE IT</button>
+
+
+</body>
+</html>

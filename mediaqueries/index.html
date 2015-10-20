@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Queries and Flexbox</title>
+
+<style type="text/css">
+  
+  html {
+    background:white;
+  }
+
+  .container {
+    margin:0 auto;
+    margin:0 auto;
+    width: 800px;
+    background: blue;
+    display:flex;
+  }
+
+  .col2 {
+    flex-grow:1;
+    height:500px;
+    background: #eee;
+    border:5px solid pink;
+  }
+  .last-guy {
+    flex-grow:2;
+  }
+
+  /*
+    
+    *** Media Queries ***
+
+    min-width means greater than
+
+    max-width means less than
+
+    so (min-width 800px) will apply styles *only* when the
+    screen width is greater than 800px wide.
+
+   */
+
+  @media (max-width: 800px){
+    .container {
+      width: 400px;
+    }
+  }
+
+  @media (max-width: 400px){
+    .container {
+      display:block;
+    }
+  }
+
+  @media (min-height: 400px){
+    html {
+      background-color:orange;
+    }
+  }
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div class="col2">flexy 1</div>  
+  <div class="col2 last-guy">flexy 2</div>  
+
+</div>
+
+</body>
+</html>

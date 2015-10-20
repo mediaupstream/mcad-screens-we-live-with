@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Geolocation / Geofence</title>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+
+    //
+    // A function to get the users lat/long position
+    // with high accuracy enabled
+    // 
+    function getPosition(cb){
+      navigator.geolocation.getCurrentPosition(function(p) {
+        cb( p.coords.latitude, p.coords.longitude );
+      }, function error(e) {
+        console.log('error happened..', e)
+      }, {enableHighAccuracy: true})
+    }
+
+
+    //
+    // A function to check if we have crossed a longitudinal line (lon)
+    // 
+    function crossLon(lon, userLong){
+      if (userLong > lon){
+        // we crossed the line, do something here!
+        $('html').attr('style', 'background-color:red');
+      }
+    }
+
+    //
+    // Every 1 second we get the current user lat/long
+    // and then see if we crossed the longitudinal line of -39.2747571
+    // 
+    setInterval(function() {
+      getPosition(function(lat, lon){
+        crossLon(-93.2747571, lon);
+      })
+    }, 1000);
+
+
+
+    // jQuery is ready
+    $(function(){
+
+      //
+      // click the button with id "getPos" to print the
+      // user lat / lon in the page, it appends it to the '.container'
+      // 
+      $('#getPos').click(function(){
+        getPosition(function(lat, lon){
+          console.log('got it')
+          var html = '<h3>' + lat +', '+ lon + '</h3>';
+          $('.container').append( html )
+        })
+      })
+
+    }); // end jquery ready
+
+
+  </script>
+</head>
+<body>
+
+<button id="getPos">Get Position</button>
+
+<div class="container"></div>
+
+</body>
+</html>
